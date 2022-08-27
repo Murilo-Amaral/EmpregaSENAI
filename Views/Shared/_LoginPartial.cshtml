@@ -1,0 +1,42 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using EmpregaSENAI.Areas.Identity.Data
+
+
+@inject SignInManager<EmpregaSENAI.Models.Users> SignInManager
+@inject UserManager<EmpregaSENAI.Models.Users> UserManager
+
+    @if (SignInManager.IsSignedIn(User))
+{
+    <div class=" col-md-3 d-flex justify-content-end py-3">
+
+        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Bem Vindo @UserManager.GetUserName(User)!</a>
+        
+        @if (UserManager.GetUserAsync(User).Result.Img != null)
+        {
+            <img style="width:70px;height:70px; object-fit:cover; border-radius:30px" src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.Img))">
+        }
+        
+        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+        </form>
+
+    </div>
+}
+else
+{
+    <div class=" col-md-3 d-flex justify-content-end py-3">
+        <ul>
+            <li class="entrar"><a class="entrar" asp-area="Identity" asp-page="/Account/Login">Entrar </a></li>
+            <div class="cadastrar">
+                <a class="cadastrar" href="#" data-bs-toggle="dropdown">
+                    Cadastrar
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register"> Empresa</a></li>
+                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register"> Aluno</a></li>
+                </ul>
+            </div>
+        </ul>
+    </div>
+}
+

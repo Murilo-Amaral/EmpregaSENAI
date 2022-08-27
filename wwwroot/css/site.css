@@ -1,0 +1,184 @@
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+  font-size: 14px;
+}
+
+.logo1 {
+    width: 80%;
+}
+
+.nave {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 60px;
+}
+
+.home, .vagas, .curriculo {
+    color: black;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+.home {
+    position: relative;
+    padding: 5px;
+}
+
+.vagas {
+    position: relative;
+    right: -45px;
+}
+
+.home a:active {
+    color: red;
+}
+
+.home a:hover, .vagas a:hover, .curriculo a:hover {
+    color: red;
+}
+
+.entrar a, .cadastrar a {
+    text-decoration: none;
+}
+
+    .entrar a:hover {
+        color: red;
+    }
+
+    .cadastrar a:hover {
+        color: black;
+    }
+
+.entrar {
+    color: red;
+    list-style: none;
+}
+
+.cadastrar {
+    color: black;
+    list-style: none;
+}
+
+    .cadastrar a:active {
+        color: red;
+    }
+
+    .cadastrar a:hover {
+        color: red;
+    }
+
+/*
+#pao a:active{
+        background-color: rgb(236, 126, 126);
+        color: black;
+}
+*/
+
+#texto {
+    text-align: justify;
+}
+
+.entrar, .cadastrar {
+    font-size: 20px;
+}
+
+.linha {
+    background-color: red;
+    height: 5px;
+}
+
+.dropdown a:hover {
+    color: red;
+}
+
+.dropdown {
+    /*aba das vagas*/
+    top: 8px;
+    position: relative;
+    font-size: xx-large;
+}
+
+.dropdown2 {
+    /*aba dos currículos*/
+    top: 10px;
+    position: relative;
+    right: -100px;
+    font-size: 30px;
+}
+
+    .dropdown2 a:hover {
+        /*aba dos currículos*/
+        color: red;
+    }
+
+a:link {
+    text-decoration: none;
+}
+
+footer {
+    border-top: 5px solid red;
+    width: 84%;
+    margin-left: 8%;
+}
+
+.img {
+    width: 30%;
+}
+
+#suporte {
+    border-left: 4px solid red;
+    font: bold;
+    text-decoration: none;
+    color: red;
+    text-align: left;
+    left: 20px;
+    position: relative;
+}
+
+
+
+#projeto {
+    color: red;
+    text-align: left;
+    left: 170px;
+    position: relative;
+}
+
+
+.letra {
+    font: bold;
+    text-decoration: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+#senai {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-align: left;
+}
+
+#sobre {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+#texto {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin-top: 40px;
+}

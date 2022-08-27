@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - EmpregaSENAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EmpregaSENAI.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="nave row border-bottom">
+                <div class="col-md-3 justify-content-end py-3">
+                    <a asp-action="Index"><img class="logo1 img-fluid" src="~/imgs/logo-senai2.png" alt="logo"></a>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center py-3">
+                    <ul class="itens nav nav-pills">
+                        <li class="home nav-item"><a class="home nav-link" asp-action="Index">Home</a></li>
+
+                        <div class="dropdown">
+                            <a class=" vagas" asp-action="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Vagas
+                            </a>
+                            <ul class="dropdown-menu" id="pao">
+                                <li><a class="dropdown-item" asp-action="Index">Ver vagas</a></li>
+                                <li><a class="dropdown-item" asp-action="Index">Divulgar vagas</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="dropdown2">
+                            <a class="curriculo" asp-action="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Currículos
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-action="Index">Gerar currículos</a></li>
+                                <li><a class="dropdown-item" asp-action="Index">Ver currículos</a></li>
+                            </ul>
+                        </div>
+                </div>
+                <partial name="_LoginPartial" />
+            </div>
+            <div class="linha md-12"></div>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class=" text-center " style="background-color:#ffffff;">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <a href="index.html"><img class="img" src="~/imgs/logo-senai2.png" alt="logo"></a>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0" id="projeto">
+                    <h4 class="text-uppercase ">Projeto</h4>
+
+                    <ul class="list-unstyled mb-0" id="sobre">
+                        <li>
+                            <a href="#!" class="text-dark">Sobre</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-dark">Contato</a>
+                        </li>
+                </div>
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0" id="suporte">
+                    <h4 class="text-uppercase mb-0">Suporte</h4>
+
+                    <div class="list-unstyled mb-0" id="senai">
+                        <li>
+                            <a href="#!" class="text-dark">Senai</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-dark">Contato</a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+            <!-- Copyright -->
+            <div class="text-center text-dark p-3" style="background-color: rgb(255, 255, 255);">
+                <ul id="texto">
+                    Senai "Engº Octavio Marcondes Ferraz"
+                    Rua Capitão Salomão, 1813 - Campos Elíseos - Ribeirão Preto/SP - CEP 14085-430
+                    Telefone: (16) 3238-7100 |E-mail:secretaria602@sp.senai.br
+                </ul>
+            </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
