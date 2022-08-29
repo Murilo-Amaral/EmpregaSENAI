@@ -9,25 +9,22 @@
 }
 
 <div class="text-center">
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                @if (UserManager.GetUserAsync(User).Result.Img != null)
-                {
-                    <img style="object-fit:cover; border-radius:30px" src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.Img))">
-                }
+                
+                    <img style="object-fit:cover; border-radius:30px" src="~/imgs/22d9be3193a081480cb8a64b82f25ccb.jpg">
+                
             </div>
             <div class="carousel-item">
-                @if (UserManager.GetUserAsync(User).Result.Img != null)
-                {
-                    <img style="object-fit:cover; border-radius:30px" src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.Img))">
-                }
+                
+                    <img style="object-fit:cover; border-radius:30px" src="~/imgs/bulba.jpg">
+                
             </div>
             <div class="carousel-item">
-                @if (UserManager.GetUserAsync(User).Result.Img != null)
-                {
-                    <img style="object-fit:cover; border-radius:30px" src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.Img))">
-                }
+                
+                    <img style="object-fit:cover; border-radius:30px" src="~/imgs/bs5Cj_jP4hs1Ht-kVmDR0MazHtAQjtcmt2ai17wIRUg.webp">
+                
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
