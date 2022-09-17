@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using EmpregaSENAI.Models;
 using System.Net.Mail;
+using System.Security.Claims;
 
 namespace EmpregaSENAI.Areas.Identity.Pages.Account
 {
@@ -121,29 +122,55 @@ namespace EmpregaSENAI.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
 
+            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
             if (ModelState.IsValid)
             {
+                var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email);
                 
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
+                if(user == null)
                 {
-                    _logger.LogInformation("Usuario logado.");
-                    return LocalRedirect(returnUrl);
-                }
-                if (result.RequiresTwoFactor)
-                {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-                }
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning("User account locked out.");
-                    return RedirectToPage("./Lockout");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Tentativa de login inválida.");
                     return Page();
                 }
+
+                var result = await _signInManager.CheckPasswordSignInAsync(user, Input.Password, false);
+                if (result.Succeeded)
+                {
+
+                    var claims = new List<Claim>
+                    {   
+                        //CRINDO UMA LISTA DE CLAIMS
+                        new Claim("amr" , "pwd"),
+                        
+                    };
+
+                    var roles = await _signInManager.UserManager.GetRolesAsync(user);
+
+                    if (roles.Any())
+                    {
+                        //ADICIONA UMA CLAIM NA LISTA REFERENTE  AOS  ROLES DO USER
+                        var roleClaim = string.Join(",", roles);
+                        claims.Add(new Claim("Roles", roleClaim));
+                    }
+
+                    await _signInManager.SignInWithClaimsAsync(user, Input.RememberMe, claims);
+
+                    _logger.LogInformation("Usuário logado.");
+                    return LocalRedirect(returnUrl);
+                }
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation("Usuário logado.");
+                    return LocalRedirect(returnUrl);
+                }
+
+
+
+
+
+
+                
             }
 
             // If we got this far, something failed, redisplay form

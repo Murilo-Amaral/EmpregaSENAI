@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using EmpregaSENAI.Core;
 
 namespace EmpregaSENAI.Controllers
 {
@@ -11,73 +13,24 @@ namespace EmpregaSENAI.Controllers
             return View();
         }
 
-        // GET: HomeController/Details/5
-        public ActionResult Details(int id)
+        [Authorize(Policy = $"{Constants.Policies.Empresa}")]
+        public ActionResult Empresa()
         {
             return View();
         }
 
-        // GET: HomeController/Create
-        public ActionResult Create()
+        [Authorize(Roles = $"{Constants.Roles.Aluno}")]
+        public ActionResult Aluno()
         {
             return View();
         }
-
-        // POST: HomeController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: HomeController/Edit/5
-        public ActionResult Edit(int id)
+                        //  \/ \/ CHAMADO DE "MAGICAL STRING" DIFICULTA A MANUNTENÇÃO DO CODIGO
+        // TROCO ESSE >> [Authorize(Roles = "Adm")] POR ESSE >>
+        // [Authorize(Roles = $"{Constants.Roles.Admin}")]
+        [Authorize(Roles = $"{Constants.Roles.Admin}")]
+        public ActionResult Admin()
         {
             return View();
-        }
-
-        // POST: HomeController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: HomeController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: HomeController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }
