@@ -19,7 +19,7 @@ namespace EmpregaSENAI.Controllers
             return View();
         }
 
-        [Authorize(Roles = $"{Constants.Roles.Aluno}")]
+        [Authorize(Policy = $"{Constants.Policies.Aluno}")]
         public ActionResult Aluno()
         {
             return View();

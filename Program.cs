@@ -52,16 +52,15 @@ app.Run();
 
 void AddAuthorizationPolicies(IServiceCollection services)
 {
-    /*
-    services.AddAuthorization(options =>
-    {
-        options.AddPolicy("EMPRESA", policy => policy.RequireClaim("empresa"));
-    });
-    */
 
     services.AddAuthorization(options =>
     {
-        options.AddPolicy(Constants.Policies.Empresa, policy => policy.RequireRole("Empresa"));
+        options.AddPolicy(Constants.Policies.Empresa, policy => policy.RequireRole(Constants.Roles.Empresa));
+    });
+
+    services.AddAuthorization(options =>
+    {
+        //options.AddPolicy(Constants.Policies.Empresa, policy => policy.RequireRole("Empresa"));
         options.AddPolicy(Constants.Policies.Aluno, policy => policy.RequireRole("Aluno"));
     });
 

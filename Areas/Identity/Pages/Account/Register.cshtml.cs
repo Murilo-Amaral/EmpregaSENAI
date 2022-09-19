@@ -20,6 +20,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using EmpregaSENAI.Models;
+using System.Security.Claims;
+using EmpregaSENAI.Core;
 
 namespace EmpregaSENAI.Areas.Identity.Pages.Account
 {
@@ -87,6 +89,8 @@ namespace EmpregaSENAI.Areas.Identity.Pages.Account
             [EmailAddress,]
             [Display(Name = "Email")]
             public string Email { get; set; }
+            [Display(Name = "Empresa/Aluno")]
+            public string Tipo { get; set; }
       
             [Required]
             [StringLength(100, ErrorMessage = "A {0} precisa ter entre {2} e {1} caracteres.", MinimumLength = 6)]
@@ -123,7 +127,19 @@ namespace EmpregaSENAI.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
-                {
+                { 
+
+                    if (Input.Tipo == "Empresa")
+                    {
+                         await _userManager.AddToRoleAsync(user, Constants.Roles.Empresa);
+                        
+                    }
+                    else if(Input.Tipo == "Aluno")
+                    {                        
+                       await _userManager.AddToRoleAsync(user, Constants.Roles.Aluno);
+
+                    }
+                    
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
@@ -138,15 +154,12 @@ namespace EmpregaSENAI.Areas.Identity.Pages.Account
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-                    }
-                    else
-                    {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
-                    }
+                    
+
+
                 }
                 foreach (var error in result.Errors)
                 {
