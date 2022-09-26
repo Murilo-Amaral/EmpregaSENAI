@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-md-6 d-flex justify-content-center py-3">
                     <ul class="itens nav nav-pills">
-                        <li class="home nav-item"><a class="home nav-link" asp-action="Index">Home</a></li>
+                        <li class="home nav-item"><a class="home nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
 
                         <div class="dropdown">
                             <a class=" vagas" asp-action="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -39,8 +39,8 @@
                                 Currículos
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-action="Index">Gerar currículos</a></li>
-                                <li><a class="dropdown-item" asp-action="Index">Ver currículos</a></li>
+                                <li><a class="dropdown-item" asp-controller="Curriculos" asp-action="Create">Gerar currículos</a></li>
+                                <li><a class="dropdown-item" asp-controller="Curriculos" asp-action="Index">Ver currículos</a></li>
                             </ul>
                         </div>
                 </div>

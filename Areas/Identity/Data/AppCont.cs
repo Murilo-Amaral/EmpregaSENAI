@@ -47,9 +47,12 @@ public class AppCont : IdentityDbContext<Users>
         {
             entity.ToTable("UserTokens");
         });
+        
 
         builder.ApplyConfiguration(new UsersEntityConfiguration());
     }
+
+    public DbSet<EmpregaSENAI.Models.Curriculo> Curriculo { get; set; }
 }
 
 
